@@ -36,7 +36,7 @@ h1, h2, h3 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; font-w
 
 .shell { max-width: 1180px; margin: 0 auto; padding: 0 32px 60px; }
 
-/* Topbar */
+/* Topbar: ahora solo tiene la marca, sin navegación (todo vive en modales) */
 .topbar {
   display: flex;
   align-items: center;
@@ -52,55 +52,94 @@ h1, h2, h3 { font-family: 'Manrope', sans-serif; letter-spacing: -0.02em; font-w
 .brand-title { margin: 0; font-size: 16px; font-weight: 800; }
 .brand-sub { margin: 1px 0 0; font-size: 12px; color: var(--ink-soft); }
 
-.nav { display: flex; gap: 6px; }
-
-.nav-link {
-  padding: 9px 16px;
-  border-radius: 999px;
-  color: var(--ink-soft);
-  text-decoration: none;
-  font-size: 13.5px;
-  font-weight: 600;
-  border: 1px solid transparent;
-}
-.nav-link:hover { color: var(--ink); }
-.nav-link.active {
-  background: var(--red);
-  color: #fff;
-}
-
-.topbar-stats { display: flex; gap: 8px; }
-.pill-stat {
-  font-size: 12px;
-  color: var(--ink-soft);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 7px 13px;
-}
-.pill-stat strong { color: var(--ink); font-weight: 700; }
-.pill-warn strong { color: var(--amber); }
-
 /* Page head */
-.page-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-.page-head h1 { font-size: 28px; margin: 0 0 4px; }
+.page-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+.page-head h1 { font-size: 28px; margin: 0 0 12px; }
 .eyebrow {
   font-size: 12.5px;
   font-weight: 700;
-  margin: 0;
+  margin: 0 0 4px;
   color: var(--red);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
-.count-tag {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--ink);
+
+/* Chips "Productos" / "Stock bajo": clickeables, texto arriba, número grande debajo */
+.stats-row { display: flex; gap: 10px; }
+.stat-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+}
+.stat-chip-value { font-size: 18px; font-weight: 800; color: var(--ink); }
+.stat-chip-label { font-size: 11px; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-chip.active { border-color: var(--red); background: var(--red-tint); }
+.stat-chip.warn .stat-chip-value { color: var(--amber); }
+.stat-chip.warn.active { border-color: var(--amber); background: var(--amber-tint); }
+
+.filter-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 8px 15px;
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  margin-bottom: 18px;
 }
+
+/* Modal (Nuevo / Ver / Editar) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 50;
+}
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
+.modal-head h2 { font-size: 17px; margin: 0; }
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.modal-close:hover { background: var(--surface-hover); color: var(--ink); }
+.modal-body { padding: 20px 22px 22px; }
+.modal-body .form-sheet { border: none; padding: 0; background: none; max-width: none; }
 
 /* Product grid */
 .product-grid {
